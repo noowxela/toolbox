@@ -58,10 +58,10 @@ The request answered these before implementation. They are recorded here.
 - [x] Diff: two panes, side by side and inline, line and word or character highlights, ignore whitespace and case, swap, added and removed counts.
 - [x] Light and dark, narrow layout, and keyboard access for the controls.
 - [x] `npm test`, `npm run lint`, and `npm run build` pass. Pages build still sets `VITE_BASE=/toolbox/`.
-- [ ] Each tool checked in the running app, including PDF to Markdown still opening.
+- [x] Each tool checked in the running app, including PDF to Markdown still opening.
 
 ## 6. Status history
 
 | Date | Status | Note |
 | --- | --- | --- |
-| 2026-10-21 | implemented | Request specified browser-only tools and hash routes. Unit tests, lint, and the `/toolbox/` production build passed. Browser pass follows in the same change. |
+| 2026-10-21 | implemented | Request specified browser-only tools and hash routes. Unit tests, lint, and the `/toolbox/` production build passed. Browser pass covered the home list, all five tools, dark and narrow layouts, and a PDF convert that returned the sample text. |
