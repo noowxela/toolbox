@@ -42,7 +42,7 @@ uvicorn main:app --reload --host 127.0.0.1 --port 8000
 
 ## GitHub Pages
 
-`.github/workflows/pages.yml` is manual (`workflow_dispatch`). It builds `web/` with `VITE_BASE=/toolbox/` and `VITE_API_URL`. The variable has to be the Render service URL, because the PDF tool is in the same build. The other tools work in the published site even when the API is asleep.
+`.github/workflows/pages.yml` deploys on a push to `main` that changes `web/**` or the workflow file, and it can still be run by hand (`workflow_dispatch`). It builds `web/` with `VITE_BASE=/toolbox/` and `VITE_API_URL`. The variable has to be the Render service URL, because the PDF tool is in the same build. The other tools work in the published site even when the API is asleep. A push that only changes `api/` does not redeploy the site.
 
 ## Render
 
