@@ -22,6 +22,14 @@
 - The API must allow the Pages origin in `ALLOWED_ORIGINS`, or the browser will block the upload.
 - URL fetch stays out. Most public PDF URLs fail in the browser because of CORS, and a static host cannot proxy them.
 
+## Browser tools
+
+- QR codes, images, JSON, timestamps, and diffs stay in the browser. These pages do not call the API.
+- A center logo covers part of a QR code. The page raises error correction to H. A very large logo, or colors that are too close, can still fail to scan.
+- Image conversion redraws the file on a canvas, which drops metadata. Very large images can exhaust the tab. Animated GIFs become one frame. WebP encoding depends on the browser.
+- Comparing two huge, unrelated texts can be too expensive. The diff stops past a large edit distance and says so.
+- New page dependencies: `qrcode` (MIT), `fflate` (MIT), `yaml` (ISC), `diff` (BSD-3-Clause). Vitest is a dev dependency (MIT).
+
 ## License
 
 - PyMuPDF is AGPL (with a commercial license option). This personal toolbox is fine. Selling the converter, or combining it into a closed product, needs a license check first.

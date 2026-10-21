@@ -36,7 +36,12 @@ def health() -> dict[str, bool]:
 def tools() -> dict[str, list[dict[str, str]]]:
     return {
         "tools": [
-            {"id": "pdf-to-md", "name": "PDF to Markdown"},
+            {"id": "pdf-to-md", "name": "PDF to Markdown", "runs": "api"},
+            {"id": "qr", "name": "QR code", "runs": "browser"},
+            {"id": "image", "name": "Image compress and convert", "runs": "browser"},
+            {"id": "json", "name": "JSON formatter", "runs": "browser"},
+            {"id": "time", "name": "Timestamp and time zones", "runs": "browser"},
+            {"id": "diff", "name": "Text diff", "runs": "browser"},
         ]
     }
 
