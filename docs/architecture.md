@@ -1,20 +1,31 @@
 # Architecture
 
-- **Repo:** `/Users/alexwoon/Documents/github/01_project/o000o_active/toolbox`
+- **Repo:** toolbox
 - **Status:** `implemented`
-- **Date:** 2026-10-02
+- **Date:** 2026-10-21
 
-Toolbox is a small multi-tool app. Each tool is one page in `web/` and one route group under `/tools/<id>/` in `api/`. PDF to Markdown is the only tool.
+Toolbox is a small multi-tool site. Each tool is one page in `web/`. PDF to Markdown is the only tool that calls `api/`. The other tools run in the browser and do not upload files.
 
 ```text
-web (Vite)  --POST PDF-->  api (FastAPI on Render)
-                         pymupdf4llm.to_markdown
-                         { "markdown": "..." }
+web (Vite, GitHub Pages, base /toolbox/)
+  #/            tool list
+  #/pdf-to-md   POST /tools/pdf-to-md/convert
+  #/qr          browser
+  #/image       browser
+  #/json        browser
+  #/time        browser
+  #/diff        browser
+
+api (FastAPI on Render)
+  GET /health
+  GET /tools
+  POST /tools/pdf-to-md/convert   pymupdf4llm.to_markdown
 ```
 
+- Routes are hashes (`#/qr`). GitHub Pages can serve the built `index.html` at `/toolbox/` without a fallback for unknown paths. `VITE_BASE` is `/toolbox/` in the Pages workflow and `/` locally.
+- Each tool page is a separate JavaScript chunk, loaded when that route opens.
 - `api/` is the Python service. Render root directory is `api`.
-- `web/` is the static page. GitHub Pages base path is `/toolbox/` when the Pages workflow runs.
-- Local API default is `http://127.0.0.1:8000`. The page reads `VITE_API_URL`.
-- Live Render and GitHub Pages are not created until asked. See `docs/todo.md` and `docs/risk.md`.
+- Local API default is `http://127.0.0.1:8000`. The PDF page reads `VITE_API_URL`.
+- The browser tools do not read `VITE_API_URL`.
 
-Workspace for the future service: Alex's workspace `tea-dap4tfoae00c7393c5hg`, region Singapore, plan free. Not the food-picker services.
+Workspace for the service: Alex's workspace `tea-dap4tfoae00c7393c5hg`, region Singapore, plan free. Not the food-picker services.
